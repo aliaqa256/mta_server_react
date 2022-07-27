@@ -1,6 +1,7 @@
 import './App.css';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { Register, Navbar } from "./components/index";
+
 function App() {
   return (
 	  <div className="App">
