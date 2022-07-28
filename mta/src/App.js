@@ -1,15 +1,25 @@
 import './App.css';
 import { Navigate, Routes, Route } from 'react-router-dom';
-import { Register, Navbar } from "./components/index";
+import { Login,Register, Navbar } from "./components/index";
 
-function App() {
+
+
+
+function App ()
+{
+	
+
+
   return (
 	  <div className="App">
-		  <Navbar />
-			<Routes>
-				<Route path="/" element={<Navigate to="/register" />} />
-				<Route path="register" element={<Register />} />
-			</Routes>
+	
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Navigate to="/register" />} />
+			  <Route path="register" element={ <Register /> } />
+			  <Route path="login" element={<Login/>} />
+		  </Routes>
+	
 		</div>
 	);
 
