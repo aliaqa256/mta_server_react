@@ -2,3 +2,7 @@
   background-color: #ffb86c !important;
   color: #fff;
 }
+.redpill .active{
+  background-color: #ff5555 !important;
+  color: #fff;
+}

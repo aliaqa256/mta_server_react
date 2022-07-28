@@ -17,11 +17,16 @@ const authSlice = createSlice( {
         loadingAction: ( state, action ) =>
         {
             state.loading = action.payload;
+        },
+        logoutAction: ( state, action ) =>
+        {
+            state.isAuthenticated = false;
+            state.user = null;
         }
 
     }
 } );
 
 
-export const { loginAction,loadingAction } = authSlice.actions;
+export const { loginAction, loadingAction, logoutAction } = authSlice.actions;
 export default authSlice.reducer;

@@ -6,9 +6,11 @@ import Spinnable from "../Spinnable";
 import MyInput from "../MyInput";
 import { useFormik } from "formik";
 import { RegisterSchema } from "../../validations/registerValidation";
+import { useNavigate } from "react-router-dom";
 
 const Register = (props) => {
 	const fetchData = useAxios();
+	 let navigate = useNavigate();
 	const handleSubmit = async (values) => {
 		if (values['password'] !== values['confirm_password']) {
 			toast.error("پسورد ها یکی نیستند");
@@ -20,6 +22,7 @@ const Register = (props) => {
 				});
 				if (response.status === 201) {
 					toast.success( "ثبت نام با موفقیت انجام شد" );
+					navigate("/login");
 					 
 				} else {
 					toast.error("خطا در ثبت نام");
