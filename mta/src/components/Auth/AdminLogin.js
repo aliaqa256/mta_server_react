@@ -8,7 +8,7 @@ import { LoginSchema } from "../../validations/loginValidation";
 import { useDispatch } from "react-redux";
 import { loginAction, setCreatorAction } from "../../redux/authSlicer";
 import jwt_decode from "jwt-decode";
-
+import Islogout from "../Auth/IsLogout";
 const Login = (props) => {
 	const fetchData = useAxios();
 	const dispatch = useDispatch();
@@ -61,47 +61,44 @@ const Login = (props) => {
 	});
 
 	return (
-		<Spinnable>
-			<div className="container">
-				<div className="row">
-					<div className="col-md-6 m-auto">
-						<h1 className={` text-white  display-4 text-center `}>
-							ورود
-						</h1>
+		<Islogout>
+			<Spinnable>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-6 m-auto">
+							<h1 className={` text-white  display-4 text-center `}>ورود</h1>
 
-						<form className="" onSubmit={formik.handleSubmit}>
-							<MyInput
-								id="username"
-								type="text"
-								name="username"
-								placeholder="نام کاربری"
-								lable="username"
-								formik={formik}
-							/>
+							<form className="" onSubmit={formik.handleSubmit}>
+								<MyInput
+									id="username"
+									type="text"
+									name="username"
+									placeholder="نام کاربری"
+									lable="username"
+									formik={formik}
+								/>
 
-							<MyInput
-								id="password"
-								type="password"
-								name="password"
-								placeholder="پسورد"
-								lable="password"
-								formik={formik}
-							/>
+								<MyInput
+									id="password"
+									type="password"
+									name="password"
+									placeholder="پسورد"
+									lable="password"
+									formik={formik}
+								/>
 
-
-					
-
-							<button
-								type="submit"
-								className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
-							>
-								ورود
-							</button>
-						</form>
+								<button
+									type="submit"
+									className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
+								>
+									ورود
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		</Spinnable>
+			</Spinnable>
+		</Islogout>
 	);
 };
 

@@ -7,12 +7,12 @@ import IsCreator from "../Auth/IsCreator";
 import MyInput from "../MyInput";
 import { useFormik } from "formik";
 import { RunServerSchema } from "../../validations/runServerValidation";
-
+import { useNavigate } from "react-router-dom";
 
 
 const CreateServer = (props) => {
 	const fetchData = useAxios();
-
+	let navigate = useNavigate();
 
 
 	const handleSubmit = async (values) => {
@@ -28,7 +28,8 @@ const CreateServer = (props) => {
 			if (response.status === 200) {
 
                 toast.success( "سرور با موفقیت ساخته شد " );
-                toast.info( "سرور در حال ران شدن است کمتر از 5 دقیقه صبر کنید" );
+				toast.info( "سرور در حال ران شدن است کمتر از 5 دقیقه صبر کنید" );
+				navigate("/myservers");
 			} else {
 				if (
 					response.response.status === 400 ||

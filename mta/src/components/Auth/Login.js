@@ -11,7 +11,8 @@ import { useDispatch } from "react-redux";
 import { loginAction } from "../../redux/authSlicer";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
-// TODO if user is login cant visit login page and register page
+import Islogout from "../Auth/IsLogout";
+
 const Login = (props) => {
 	const fetchData = useAxios();
 	const serverRef = useRef(0);
@@ -84,59 +85,61 @@ const Login = (props) => {
 	});
 
 	return (
-		<Spinnable>
-			<div className="container">
-				<div className="row">
-					<div className="col-md-6 m-auto">
-						<h1 className={` ${styles.color_white}  display-4 text-center `}>
-							ورود
-						</h1>
-
-						<form className="" onSubmit={formik.handleSubmit}>
-							<MyInput
-								id="username"
-								type="text"
-								name="username"
-								placeholder="نام کاربری"
-								lable="username"
-								formik={formik}
-							/>
-
-							<MyInput
-								id="password"
-								type="password"
-								name="password"
-								placeholder="پسورد"
-								lable="password"
-								formik={formik}
-							/>
-
-							<label for="server">سرور</label>
-
-							<select
-								name="server"
-								id="server"
-								className="form-control"
-								ref={serverRef}
-							>
-								{ servers.map( ( server ) => (
-									<option key={server.id} value={server.id}>
-										{server.name}
-									</option>
-								) ) }
-							</select>
-
-							<button
-								type="submit"
-								className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
-							>
+		<Islogout>
+			<Spinnable>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-6 m-auto">
+							<h1 className={` ${styles.color_white}  display-4 text-center `}>
 								ورود
-							</button>
-						</form>
+							</h1>
+
+							<form className="" onSubmit={formik.handleSubmit}>
+								<MyInput
+									id="username"
+									type="text"
+									name="username"
+									placeholder="نام کاربری"
+									lable="username"
+									formik={formik}
+								/>
+
+								<MyInput
+									id="password"
+									type="password"
+									name="password"
+									placeholder="پسورد"
+									lable="password"
+									formik={formik}
+								/>
+
+								<label for="server">سرور</label>
+
+								<select
+									name="server"
+									id="server"
+									className="form-control"
+									ref={serverRef}
+								>
+									{servers.map((server) => (
+										<option key={server.id} value={server.id}>
+											{server.name}
+										</option>
+									))}
+								</select>
+
+								<button
+									type="submit"
+									className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
+								>
+									ورود
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		</Spinnable>
+			</Spinnable>
+		</Islogout>
 	);
 };
 

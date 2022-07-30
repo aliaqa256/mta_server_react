@@ -7,7 +7,7 @@ import MyInput from "../MyInput";
 import { useFormik } from "formik";
 import { RegisterSchema } from "../../validations/registerValidation";
 import { useNavigate } from "react-router-dom";
-
+import Islogout from "../Auth/IsLogout";
 const Register = (props) => {
 	const fetchData = useAxios();
 	 let navigate = useNavigate();
@@ -45,57 +45,59 @@ const Register = (props) => {
 		},
 	});
 	return (
-		<Spinnable>
-			<div className="container">
-				<div className="row">
-					<div className="col-md-6 m-auto">
-						<h1 className={` ${styles.color_white}  display-4 text-center `}>
-							ثبت نام
-						</h1>
-						<form className="" onSubmit={formik.handleSubmit}>
-							<MyInput
-								id="username"
-								type="text"
-								name="username"
-								placeholder="نام کاربری"
-								lable="username"
-								formik={formik}
-							/>
-							<MyInput
-								id="email"
-								type="email"
-								name="email"
-								placeholder="ایمیل"
-								lable="email"
-								formik={formik}
-							/>
-							<MyInput
-								id="password"
-								type="password"
-								name="password"
-								placeholder="پسورد"
-								lable="password"
-								formik={formik}
-							/>
-							<MyInput
-								id="confirm_password"
-								type="password"
-								name="confirm_password"
-								placeholder="تکرار پسورد"
-								lable="confirm password"
-								formik={formik}
-							/>
-							<button
-								type="submit"
-								className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
-							>
+		<Islogout>
+			<Spinnable>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-6 m-auto">
+							<h1 className={` ${styles.color_white}  display-4 text-center `}>
 								ثبت نام
-							</button>
-						</form>
+							</h1>
+							<form className="" onSubmit={formik.handleSubmit}>
+								<MyInput
+									id="username"
+									type="text"
+									name="username"
+									placeholder="نام کاربری"
+									lable="username"
+									formik={formik}
+								/>
+								<MyInput
+									id="email"
+									type="email"
+									name="email"
+									placeholder="ایمیل"
+									lable="email"
+									formik={formik}
+								/>
+								<MyInput
+									id="password"
+									type="password"
+									name="password"
+									placeholder="پسورد"
+									lable="password"
+									formik={formik}
+								/>
+								<MyInput
+									id="confirm_password"
+									type="password"
+									name="confirm_password"
+									placeholder="تکرار پسورد"
+									lable="confirm password"
+									formik={formik}
+								/>
+								<button
+									type="submit"
+									className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
+								>
+									ثبت نام
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		</Spinnable>
+			</Spinnable>
+		</Islogout>
 	);
 };
 

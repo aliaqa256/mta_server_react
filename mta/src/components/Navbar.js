@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../redux/authSlicer";
@@ -12,9 +12,13 @@ const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-pills redpill ">
-			<a className="navbar-brand" href="#">
+			<Link
+				to="/"
+				activeClassName="none"
+				className="navbar-brand"
+			>
 				express
-			</a>
+			</Link>
 			<button
 				className="navbar-toggler"
 				type="button"

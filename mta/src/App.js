@@ -6,7 +6,8 @@ import {
 	Login,
 	Register,
 	Navbar,
-	Myservers
+	Myservers,
+	MainPage
 } from "./components/index";
 
 
@@ -21,12 +22,12 @@ function App ()
 		<div className="App">
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<Navigate to="/register" />} />
+				<Route path="/" element={<MainPage />}  />
 				<Route path="register" element={<Register />} />
 				<Route path="login" element={<Login />} />
-			  <Route path="admin-login" element={ <AdminLogin /> } />
-			  <Route path="create-server" element={ <CreateServer /> } />
-			  <Route path="myservers" element={ <Myservers /> } />
+				<Route path="admin-login" element={<AdminLogin />} />
+				<Route path="create-server" element={<CreateServer />} />
+				<Route path="myservers" element={<Myservers />} />
 			</Routes>
 		</div>
 	);
