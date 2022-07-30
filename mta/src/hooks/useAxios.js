@@ -7,7 +7,7 @@ const useAxios = (url, options) => {
 	const dispatch = useDispatch();
 
 	const axiosInstance = axios.create({
-		baseURL: "http://localhost:8000/api/",
+		baseURL: "http://62.3.41.227/api/",
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
@@ -16,9 +16,11 @@ const useAxios = (url, options) => {
 
 	axiosInstance.interceptors.request.use(async (request) => {
 		try {
-			const accessToken = localStorage.getItem("token");
+			const accessToken = localStorage.getItem( "token" );
+			console.log(accessToken)
 			if (accessToken) {
-				request.headers.Authorization = `Bearer ${accessToken}`;
+				request.headers.Authorization = `Bearer ${ accessToken }`;
+				return request;
 			}
 			if (accessToken == null) {
 				return request;
@@ -35,7 +37,9 @@ const useAxios = (url, options) => {
 		},
 		(error) => {
 			if (error.response.status === 401) {
-				// TODO navigate to login page and clear local storage
+				dispatch(loadingAction(false));
+				window.location.href = "/login";
+				localStorage.removeItem( "token" );
 			}
 
 			return error;

@@ -6,7 +6,8 @@ const authSlice = createSlice( {
         isAuthenticated: false,
         user: null,
         error: null,
-        loading: false
+        loading: false,
+        is_creator: false
     },
     reducers: {
         loginAction: ( state, action ) => {
@@ -22,11 +23,17 @@ const authSlice = createSlice( {
         {
             state.isAuthenticated = false;
             state.user = null;
+            state.is_creator = false;
+        },
+        setCreatorAction: ( state, action ) =>
+        {
+            state.is_creator = action.payload;
         }
 
     }
 } );
 
 
-export const { loginAction, loadingAction, logoutAction } = authSlice.actions;
+export const { loginAction, loadingAction, logoutAction, setCreatorAction } =
+	authSlice.actions;
 export default authSlice.reducer;

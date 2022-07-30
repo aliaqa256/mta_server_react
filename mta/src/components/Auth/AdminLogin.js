@@ -1,62 +1,37 @@
 // register user component function
-import styles from "./Register.module.css";
 import { toast } from "react-toastify";
 import useAxios from "../../hooks/useAxios";
 import Spinnable from "../Spinnable";
 import MyInput from "../MyInput";
 import { useFormik } from "formik";
 import { LoginSchema } from "../../validations/loginValidation";
-import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { loginAction } from "../../redux/authSlicer";
+import { loginAction, setCreatorAction } from "../../redux/authSlicer";
 import jwt_decode from "jwt-decode";
-import { useEffect, useState } from "react";
-// TODO if user is login cant visit login page and register page
+
 const Login = (props) => {
 	const fetchData = useAxios();
-	const serverRef = useRef(0);
 	const dispatch = useDispatch();
 
-	const [servers, setServers] = useState([]);
 
-	useEffect(() => {
-		const getListOfServers = async () => {
-			try {
-				const response = await fetchData("auth/servers-list", {
-					method: "GET",
-				});
-				if (response.status === 200) {
-					setServers( response.data );
-				} else {
-					toast.error("خطا در دریافت لیست سرورها");
-				}
-			} catch (error) {
-				console.log(error);
-				toast.error("خطا در برقراری ارتباط با سرور");
-			}
-		};
 
-		getListOfServers();
-	}, []);
 
 	const handleSubmit = async (values) => {
 		const data = {
-			server_number: serverRef.current.value,
 			...values,
 		};
 		try {
-			const response = await fetchData("/auth/mta-login/", {
+			const response = await fetchData("/auth/login/", {
 				method: "POST",
 				data: data,
-			});
+			} );
 			console.log(response);
-			if ( response.status === 200 )
-			{
-				console.log('200')
-				localStorage.setItem("token", response.data.data.access);
-				const user = jwt_decode(response.data.data.access);
-				dispatch( loginAction( user ) );
-
+            if ( response.status === 200 )
+            {
+				localStorage.setItem("token", response.data.access);
+				const user = jwt_decode(response.data.access);
+                dispatch( loginAction( user ) );
+                dispatch( setCreatorAction( true ) );
 				toast.success("شما با موفقیت وارد شدید");
 			} else {
 				if (
@@ -67,7 +42,9 @@ const Login = (props) => {
 					toast.info("  لطفا به انتخاب سرور خود نیز دقت کنید");
 				}
 			}
-		} catch (err) {
+		} catch ( err )
+		{
+			console.log(err);
 			toast.error("خطا در ورود");
 		}
 	};
@@ -88,7 +65,7 @@ const Login = (props) => {
 			<div className="container">
 				<div className="row">
 					<div className="col-md-6 m-auto">
-						<h1 className={` ${styles.color_white}  display-4 text-center `}>
+						<h1 className={` text-white  display-4 text-center `}>
 							ورود
 						</h1>
 
@@ -111,20 +88,8 @@ const Login = (props) => {
 								formik={formik}
 							/>
 
-							<label for="server">سرور</label>
 
-							<select
-								name="server"
-								id="server"
-								className="form-control"
-								ref={serverRef}
-							>
-								{ servers.map( ( server ) => (
-									<option key={server.id} value={server.id}>
-										{server.name}
-									</option>
-								) ) }
-							</select>
+					
 
 							<button
 								type="submit"
