@@ -11,7 +11,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-pills redpill ">
+		<nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-pills redpill sticky-top ">
 			<Link
 				to="/"
 				activeClassName="none"

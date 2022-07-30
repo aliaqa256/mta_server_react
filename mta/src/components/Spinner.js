@@ -5,8 +5,7 @@ const Spinner = () => {
     <>
       <img
         src={SpinnerGIF}
-        className="d-block m-auto"
-        style={ { width: "200px" } }
+        className="d-block m-auto w-50"
         alt="Loading..."
       />
     </>
