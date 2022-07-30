@@ -1,7 +1,7 @@
 body {
   background-color: #252a36;
   margin: 0;
-  font-family: "Vazir", "tahoma", "Ubuntu" !important;
+  font-family: 'Iranian Sans',"Vazir",  "Ubuntu" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
