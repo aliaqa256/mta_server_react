@@ -61,7 +61,7 @@ const MainPage = () => {
 						</div>
 					</section>
 
-					<section class="light">
+					<section class="dark">
 						<div class="container py-2">
 							<div class="h1 text-center text-dark" id="pageHeaderTitle"></div>
 
