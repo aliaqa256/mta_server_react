@@ -22,7 +22,7 @@ const Register = (props) => {
 				});
 				if (response.status === 201) {
 					toast.success( "ثبت نام با موفقیت انجام شد" );
-					navigate("/login");
+					navigate("/admin-login");
 					 
 				} else {
 					toast.error("خطا در ثبت نام");

@@ -8,5 +8,7 @@ export { default as AdminLogin } from "./Auth/AdminLogin";
 
 export { default as CreateServer } from "./Creator/CreateServer";
 export { default as Myservers } from "./Creator/MyServers";
+export { default as ServerManagment } from "./Creator/ServerManagment";
+export { default as MakeAdmin } from "./Creator/MakeAdmin";
 
 export { default as MainPage } from "./MainPage";

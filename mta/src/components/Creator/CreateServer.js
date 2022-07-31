@@ -31,12 +31,7 @@ const CreateServer = (props) => {
 				toast.info( "سرور در حال ران شدن است کمتر از 5 دقیقه صبر کنید" );
 				navigate("/myservers");
 			} else {
-				if (
-					response.response.status === 400 ||
-					response.response.status === 403
-				) {
 					toast.error("خطایی رخ داد");
-				}
 			}
 		} catch (err) {
 			toast.error("خطایی رخ داد");

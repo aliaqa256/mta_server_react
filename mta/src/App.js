@@ -1,5 +1,5 @@
 import './App.css';
-import { Navigate, Routes, Route } from 'react-router-dom';
+import {  Routes, Route } from 'react-router-dom';
 import {
 	CreateServer,
 	AdminLogin,
@@ -7,7 +7,9 @@ import {
 	Register,
 	Navbar,
 	Myservers,
-	MainPage
+	MainPage,
+	ServerManagment,
+	MakeAdmin
 } from "./components/index";
 
 
@@ -27,7 +29,9 @@ function App ()
 				<Route path="login" element={<Login />} />
 				<Route path="admin-login" element={<AdminLogin />} />
 				<Route path="create-server" element={<CreateServer />} />
-				<Route path="myservers" element={<Myservers />} />
+			  <Route path="myservers" element={ <Myservers /> } />
+			  <Route path="server-managment/:server_id" element={ <ServerManagment /> } />
+			  <Route path="make-admin/:server_id" element={ <MakeAdmin /> } />
 			</Routes>
 		</div>
 	);

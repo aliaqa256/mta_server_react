@@ -2,12 +2,16 @@ import { NavLink,Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../redux/authSlicer";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 	const { isAuthenticated, is_creator } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const logout = () => {
 		dispatch(logoutAction());
-		localStorage.removeItem("token");
+		localStorage.removeItem( "token" );
+		navigate("/");
+		
 	};
 
 	return (
@@ -126,7 +130,7 @@ const Navbar = () => {
 											activeClassName="active "
 											className="nav-link"
 										>
-											سرور های من{" "}
+											سرور های من
 										</NavLink>
 									</li>
 								</div>

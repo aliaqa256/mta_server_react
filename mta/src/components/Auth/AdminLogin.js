@@ -7,12 +7,13 @@ import { useFormik } from "formik";
 import { LoginSchema } from "../../validations/loginValidation";
 import { useDispatch } from "react-redux";
 import { loginAction, setCreatorAction } from "../../redux/authSlicer";
+import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Islogout from "../Auth/IsLogout";
 const Login = (props) => {
 	const fetchData = useAxios();
 	const dispatch = useDispatch();
-
+	const navigate = useNavigate();
 
 
 
@@ -32,7 +33,8 @@ const Login = (props) => {
 				const user = jwt_decode(response.data.access);
                 dispatch( loginAction( user ) );
                 dispatch( setCreatorAction( true ) );
-				toast.success("شما با موفقیت وارد شدید");
+				toast.success( "شما با موفقیت وارد شدید" );
+				navigate('/myservers')
 			} else {
 				if (
 					response.response.status === 400 ||
