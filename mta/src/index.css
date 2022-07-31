@@ -1,33 +1,43 @@
 body {
-  background-color: #252a36;
-  margin: 0;
-  font-family: 'Iranian Sans',"Vazir",  "Ubuntu" !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	background-color: #252a36;
+	margin: 0;
+	font-family: "Iranian Sans", "Vazir", "Ubuntu" !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 input[type="text"]::-webkit-input-placeholder,
 input[type="email"]::-webkit-input-placeholder,
-input[type="password"]::-webkit-input-placeholder ,
+input[type="password"]::-webkit-input-placeholder,
 input[type="number"]::-webkit-input-placeholder {
-  color: #f8f8f459;
+	color: #f8f8f459;
 }
 
 label {
-  color: #f8f8f4;
+	color: #f8f8f4;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="number"] {
-  color: #f8f8f4 !important;
-  background-color: #44475a !important;
-  border-color: #bd93f9 !important;
+input[type="number"] ,
+select{
+	color: #f8f8f4 !important;
+	background-color: #44475a !important;
+	border-color: #bd93f9 !important;
+	border-radius: 0 10px 10px 0 !important;
 }
 
 .form-control {
-  background-color: #44475a !important;
-  color: #f8f8f4 !important;
-  border-color: #bd93f9 !important;
+	background-color: #44475a !important;
+	color: #f8f8f4 !important;
+	border-color: #bd93f9 !important;
 }
+.gr-txt {
+	height: 48px !important;
+	color: #f8f8f4 !important;
+	background-color: #eb2e24d4 !important;
+	border-color: #bd93f9 !important;
+	border-radius: 10px 0px 0px 10px !important;
+}
+

@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 import Islogout from "../Auth/IsLogout";
 const Register = (props) => {
 	const fetchData = useAxios();
-	 let navigate = useNavigate();
+	let navigate = useNavigate();
 	const handleSubmit = async (values) => {
-		if (values['password'] !== values['confirm_password']) {
+		if (values["password"] !== values["confirm_password"]) {
 			toast.error("پسورد ها یکی نیستند");
 		} else {
 			try {
@@ -21,9 +21,8 @@ const Register = (props) => {
 					data: values,
 				});
 				if (response.status === 201) {
-					toast.success( "ثبت نام با موفقیت انجام شد" );
+					toast.success("ثبت نام با موفقیت انجام شد");
 					navigate("/admin-login");
-					 
 				} else {
 					toast.error("خطا در ثبت نام");
 				}
@@ -69,6 +68,7 @@ const Register = (props) => {
 									placeholder="ایمیل"
 									lable="email"
 									formik={formik}
+									gt="@"
 								/>
 								<MyInput
 									id="password"

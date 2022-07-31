@@ -5,32 +5,43 @@ const MyInput = ({
 	value,
 	onChange,
 	error,
-    ref,
+	ref,
 	lable,
 	id,
 	formik,
+	gt,
 	...rest
 }) => {
 	return (
-		<div className="form-group my-2">
+		<>
 			<label htmlFor={name}>{lable}</label>
-			<input
-				id={id}
-				type={type}
-				className="form-control form-control-lg"
-				name={name}
-				placeholder={placeholder}
-				ref={ref}
-				value={value}
-				onChange={onChange}
-				{...formik.getFieldProps({ name })}
-			/>
-			{formik.touched[id] && formik.errors[id] ? (
-				<div className="text-danger">{formik.errors[id]}</div>
-			) : null}
-		</div>
+
+			<div className="form-group my-2 input-group  ">
+				<input
+					id={id}
+					type={type}
+					className="form-control form-control-lg "
+					name={name}
+					placeholder={placeholder}
+					ref={ref}
+					value={value}
+					onChange={onChange}
+					{...formik.getFieldProps({ name })}
+				/>
+				{formik.touched[id] && formik.errors[id] ? (
+					<div className="text-danger">{formik.errors[id]}</div>
+				) : null}
+
+				{gt && (
+					<div class="input-group-prepend ">
+						<label class="input-group-text gr-txt" for="inputGroupSelect01 ">
+							{gt}
+						</label>
+					</div>
+				)}
+			</div>
+		</>
 	);
 };
-
 
 export default MyInput;

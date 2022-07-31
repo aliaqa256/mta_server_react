@@ -27,7 +27,7 @@ const Login = (props) => {
 					method: "GET",
 				});
 				if (response.status === 200) {
-					setServers( response.data );
+					setServers(response.data);
 				} else {
 					toast.error("خطا در دریافت لیست سرورها");
 				}
@@ -51,12 +51,11 @@ const Login = (props) => {
 				data: data,
 			});
 			console.log(response);
-			if ( response.status === 200 )
-			{
-				console.log('200')
+			if (response.status === 200) {
+				console.log("200");
 				localStorage.setItem("token", response.data.data.access);
 				const user = jwt_decode(response.data.data.access);
-				dispatch( loginAction( user ) );
+				dispatch(loginAction(user));
 
 				toast.success("شما با موفقیت وارد شدید");
 			} else {
@@ -114,20 +113,28 @@ const Login = (props) => {
 								/>
 
 								<label for="server">سرور</label>
-
-								<select
-									name="server"
-									id="server"
-									className="form-control"
-									ref={serverRef}
-								>
-									{servers.map((server) => (
-										<option key={server.id} value={server.id}>
-											{server.name}
-										</option>
-									))}
-								</select>
-
+								<div className="form-group my-2 input-group  ">
+									<select
+										name="server"
+										id="server"
+										className="form-control"
+										ref={serverRef}
+									>
+										{servers.map((server) => (
+											<option key={server.id} value={server.id}>
+												{server.name}
+											</option>
+										))}
+									</select>
+									<div class="input-group-prepend ">
+										<label
+											class="input-group-text gr-txt"
+											for="inputGroupSelect01 "
+										>
+											<i className="far fa-caret-square-down"></i>
+										</label>
+									</div>
+								</div>
 								<button
 									type="submit"
 									className="btn btn-primary btn-block btn-lg form-control register-btn my-4 "
