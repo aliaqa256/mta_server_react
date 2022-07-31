@@ -1,26 +1,57 @@
-import { NavLink,Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../redux/authSlicer";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import useAxios from "../hooks/useAxios";
+
 const Navbar = () => {
 	const { isAuthenticated, is_creator } = useSelector((state) => state.auth);
+	const [money, setMoney] = useState(0);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const fetchData = useAxios();
 	const logout = () => {
 		dispatch(logoutAction());
-		localStorage.removeItem( "token" );
+		localStorage.removeItem("token");
 		navigate("/");
-		
 	};
+
+	useEffect(() => {
+		const getMyMoney = async () => {
+			try
+			{
+				if ( isAuthenticated )
+				{
+					const response = await fetchData("auth/my-money", {
+						method: "GET",
+					});
+					if (response.status === 200) {
+						setMoney(response.data);
+					} else {
+						toast.error("خطا در دریافت اطلاعات از سرور");
+					}
+
+
+
+
+				}
+				
+			} catch (error) {
+				console.log(error);
+				toast.error("خطا در برقراری ارتباط با سرور");
+			}
+		};
+
+		getMyMoney();
+	}, []);
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-pills redpill sticky-top ">
-			<Link
-				to="/"
-				activeClassName="none"
-				className="navbar-brand"
-			>
+			<Link to="/" activeClassName="none" className="navbar-brand">
 				express
 			</Link>
 			<button
@@ -89,9 +120,9 @@ const Navbar = () => {
 
 							{!isAuthenticated || (
 								<li className="nav-item dropdown-item">
-									<a className="nav-link" onClick={logout}>
+									<button className="nav-link" onClick={logout}>
 										خروج
-									</a>
+									</button>
 								</li>
 							)}
 						</div>
@@ -139,6 +170,11 @@ const Navbar = () => {
 					)}
 				</ul>
 			</div>
+			{!isAuthenticated || (
+				<li className="nav-item text-white mojodi btn outline-info disabled   ">
+					موجودی کیف پول شما :{money}
+				</li>
+			)}
 		</nav>
 	);
 };

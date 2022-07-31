@@ -38,7 +38,7 @@ const Login = (props) => {
 		};
 
 		getListOfServers();
-	}, []);
+	}, [fetchData]);
 
 	const handleSubmit = async (values) => {
 		const data = {

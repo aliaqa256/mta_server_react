@@ -12,7 +12,7 @@ const IsLogin = (props) => {
         
         	if (!isAuthenticated) {
 						toast.error("شما باید وارد شوید");
-						navigate("/login");
+						navigate("/admin-login");
 					}
 
     }, [] );

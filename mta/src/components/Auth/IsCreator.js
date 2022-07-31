@@ -9,7 +9,7 @@ const IsCreator = (props) => {
 	useEffect(() => {
 		if (!is_creator) {
 			toast.error("شما به این صفحه دسترسی ندارید");
-			navigate("/login");
+			navigate("/admin-login");
 		}
 	}, []);
 
