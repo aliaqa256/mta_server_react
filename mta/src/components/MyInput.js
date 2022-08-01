@@ -33,8 +33,8 @@ const MyInput = ({
 				) : null}
 
 				{gt && (
-					<div class="input-group-prepend ">
-						<label class="input-group-text gr-txt" for="inputGroupSelect01 ">
+					<div >
+						<label className="input-group-text gr-txt" for="inputGroupSelect01 ">
 							{gt}
 						</label>
 					</div>

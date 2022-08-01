@@ -84,15 +84,13 @@ const MakeAdmin = () => {
 											formik={formik}
 										/>
 
-										<div class="form-check form-switch my-2">
+										<div >
 											<input
-												class="form-check-input"
 												type="checkbox"
 												id="flexSwitchCheckDefault"
 												ref={is_fist_timeRef}
 											/>
 											<label
-												class="form-check-label"
 												for="flexSwitchCheckDefault"
 											>
 												ایا بار اول است که به این پلیر رنک میدهید؟

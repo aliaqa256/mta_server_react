@@ -38,7 +38,7 @@ const Login = (props) => {
 		};
 
 		getListOfServers();
-	}, [fetchData]);
+	}, []);
 
 	const handleSubmit = async (values) => {
 		const data = {
@@ -126,9 +126,9 @@ const Login = (props) => {
 											</option>
 										))}
 									</select>
-									<div class="input-group-prepend ">
+									<div >
 										<label
-											class="input-group-text gr-txt"
+											className="input-group-text gr-txt"
 											for="inputGroupSelect01 "
 										>
 											<i className="far fa-caret-square-down"></i>

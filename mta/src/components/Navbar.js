@@ -7,10 +7,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
-
+import { setMoney } from "../redux/authSlicer";
 const Navbar = () => {
 	const { isAuthenticated, is_creator } = useSelector((state) => state.auth);
-	const [money, setMoney] = useState(0);
+	const [money, setMoneys] = useState(0);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const fetchData = useAxios();
@@ -30,7 +30,9 @@ const Navbar = () => {
 						method: "GET",
 					});
 					if (response.status === 200) {
-						setMoney(response.data);
+						setMoneys( response.data );
+						dispatch(setMoney, response.data);
+						
 					} else {
 						toast.error("خطا در دریافت اطلاعات از سرور");
 					}
@@ -67,9 +69,9 @@ const Navbar = () => {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNav">
 				<ul className="navbar-nav">
-					<div class="dropdown ">
+					<div className="dropdown ">
 						<button
-							class="btn btn-secondary dropdown-toggle bg-danger"
+							className="btn btn-secondary dropdown-toggle bg-danger"
 							type="button"
 							id="dropdownMenuButton"
 							data-toggle="dropdown"
@@ -79,7 +81,7 @@ const Navbar = () => {
 							کاربری
 						</button>
 						<div
-							class="dropdown-menu bg-black dropdown-menu-dark"
+							className="dropdown-menu bg-black dropdown-menu-dark"
 							aria-labelledby="dropdownMenuButton"
 						>
 							{isAuthenticated || (
@@ -130,9 +132,9 @@ const Navbar = () => {
 
 					{!is_creator || (
 						<>
-							<div class="dropdown mx-2  ">
+							<div className="dropdown mx-2  ">
 								<button
-									class="btn btn-secondary dropdown-toggle bg-info"
+									className="btn btn-secondary dropdown-toggle bg-info"
 									type="button"
 									id="dropdownMenuButton"
 									data-toggle="dropdown"
@@ -142,7 +144,7 @@ const Navbar = () => {
 									مدریت سرورها
 								</button>
 								<div
-									class="dropdown-menu bg-black dropdown-menu-dark"
+									className="dropdown-menu bg-black dropdown-menu-dark"
 									aria-labelledby="dropdownMenuButton"
 								>
 									<li className="nav-item dropdown-item ">
@@ -170,11 +172,12 @@ const Navbar = () => {
 					)}
 				</ul>
 			</div>
-			{!isAuthenticated || (
+							{!isAuthenticated || (
 				<li className="nav-item text-white mojodi btn outline-info disabled   ">
 					موجودی کیف پول شما :{money}
 				</li>
 			)}
+
 		</nav>
 	);
 };
