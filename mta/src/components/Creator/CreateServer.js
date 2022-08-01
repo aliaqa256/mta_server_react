@@ -19,7 +19,7 @@ const CreateServer = (props) => {
 	{
 		
 
-				if (money < 100) {
+				if (money < 100000) {
 					toast.error("پول شما کمتر از صد تومن است");
 					return;
 				}

@@ -7,10 +7,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
-import { setMoney } from "../redux/authSlicer";
+import { setMoneyAction } from "../redux/authSlicer";
 const Navbar = () => {
 	const { isAuthenticated, is_creator } = useSelector((state) => state.auth);
-	const [money, setMoneys] = useState(0);
+	const [money, setMoney] = useState(0);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const fetchData = useAxios();
@@ -22,33 +22,24 @@ const Navbar = () => {
 
 	useEffect(() => {
 		const getMyMoney = async () => {
-			try
-			{
-				if ( isAuthenticated )
+			try {
+				const response = await fetchData("auth/my-money", {
+					method: "GET",
+				});
+				if (response.status === 200) {
+					setMoney(response.data);
+					console.log("-------");
+					console.log(response.data);
+					dispatch(setMoneyAction(response.data));
+				} else
 				{
-					const response = await fetchData("auth/my-money", {
-						method: "GET",
-					});
-					if (response.status === 200) {
-						setMoneys( response.data );
-						dispatch(setMoney, response.data);
-						
-					} else {
-						toast.error("خطا در دریافت اطلاعات از سرور");
-					}
-
-
-
-
+					console.log("error");
 				}
-				
 			} catch (error) {
 				console.log(error);
-				toast.error("خطا در برقراری ارتباط با سرور");
 			}
 		};
-
-		getMyMoney();
+			getMyMoney();
 	}, []);
 
 	return (
@@ -85,7 +76,7 @@ const Navbar = () => {
 							aria-labelledby="dropdownMenuButton"
 						>
 							{isAuthenticated || (
-								<li className="nav-item dropdown-item ">
+								<li className="nav-item dropdown-item text-center  ">
 									<NavLink
 										to="/register"
 										activeClassName="active "
@@ -97,7 +88,7 @@ const Navbar = () => {
 							)}
 
 							{isAuthenticated || (
-								<li className="nav-item dropdown-item">
+								<li className="nav-item dropdown-item text-center ">
 									<NavLink
 										to="/login"
 										activeClassName="active"
@@ -109,7 +100,7 @@ const Navbar = () => {
 							)}
 
 							{isAuthenticated || (
-								<li className="nav-item dropdown-item">
+								<li className="nav-item dropdown-item text-center ">
 									<NavLink
 										to="/admin-login"
 										activeClassName="active"
@@ -120,8 +111,31 @@ const Navbar = () => {
 								</li>
 							)}
 
+							{!isAuthenticated || is_creator || (
+								<li className="nav-item dropdown-item text-center ">
+									<NavLink
+										activeClassName="active"
+										className="nav-link text-center"
+										to="/player-profile"
+									>
+										پروفایل
+									</NavLink>
+								</li>
+							)}
 							{!isAuthenticated || (
-								<li className="nav-item dropdown-item">
+								<li className="nav-item dropdown-item text-center">
+									<NavLink
+										activeClassName="active"
+										className="nav-link text-center"
+										to="/add-credit"
+									>
+										شارژ کیف پول
+									</NavLink>
+								</li>
+							)}
+
+							{!isAuthenticated || (
+								<li className="nav-item dropdown-item text-center">
 									<button className="nav-link" onClick={logout}>
 										خروج
 									</button>
@@ -147,7 +161,7 @@ const Navbar = () => {
 									className="dropdown-menu bg-black dropdown-menu-dark"
 									aria-labelledby="dropdownMenuButton"
 								>
-									<li className="nav-item dropdown-item ">
+									<li className="nav-item dropdown-item text-center  ">
 										<NavLink
 											to="/create-server"
 											activeClassName="active "
@@ -157,7 +171,7 @@ const Navbar = () => {
 										</NavLink>
 									</li>
 
-									<li className="nav-item dropdown-item ">
+									<li className="nav-item dropdown-item text-center  ">
 										<NavLink
 											to="/myservers"
 											activeClassName="active "
@@ -172,12 +186,11 @@ const Navbar = () => {
 					)}
 				</ul>
 			</div>
-							{!isAuthenticated || (
+			{!isAuthenticated || (
 				<li className="nav-item text-white mojodi btn outline-info disabled   ">
 					موجودی کیف پول شما :{money}
 				</li>
 			)}
-
 		</nav>
 	);
 };

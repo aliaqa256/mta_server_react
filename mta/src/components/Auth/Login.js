@@ -12,11 +12,13 @@ import { loginAction } from "../../redux/authSlicer";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import Islogout from "../Auth/IsLogout";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
 	const fetchData = useAxios();
 	const serverRef = useRef(0);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [servers, setServers] = useState([]);
 
@@ -55,7 +57,8 @@ const Login = (props) => {
 				console.log("200");
 				localStorage.setItem("token", response.data.data.access);
 				const user = jwt_decode(response.data.data.access);
-				dispatch(loginAction(user));
+				dispatch( loginAction( user ) );
+				navigate("/player-profile");
 
 				toast.success("شما با موفقیت وارد شدید");
 			} else {

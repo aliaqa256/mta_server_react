@@ -26,17 +26,19 @@ const ServerManagment = () => {
 
 	const onModalAccept =async () =>
 	{ 
-		if ( money < 100 )
-		{
-			toast.error( "پول شما کمتر از صد تومن است" )
-			setIsOpen( false );
-			return
-			}
+		if (+money < 100000) {
+			toast.error("پول شما کمتر از صد تومن است");
+			setIsOpen(false);
+			return;
+		}
 
 
 try {
 		const response = await fetchData("auth/add-days-to-server/", {
 			method: "POST",
+			data: {
+				servernumber: server_id
+			}
 		});
 	if ( response.status === 200 )
 	{

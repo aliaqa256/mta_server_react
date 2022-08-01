@@ -2,7 +2,8 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loadingAction } from "../redux/authSlicer";
-
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 const useAxios = (url, options) => {
 	const dispatch = useDispatch();
 
@@ -12,8 +13,9 @@ const useAxios = (url, options) => {
 			"Content-Type": "application/json",
 			Accept: "application/json",
 		},
-	});
-
+	} );
+	
+	
 	axiosInstance.interceptors.request.use(async (request) => {
 		try {
 			const accessToken = localStorage.getItem( "token" );
@@ -30,7 +32,7 @@ const useAxios = (url, options) => {
 			console.log("in axios interceptor");
 		}
 	});
-
+	
 	axiosInstance.interceptors.response.use(
 		(response) => {
 			return response;
@@ -40,10 +42,17 @@ const useAxios = (url, options) => {
 				dispatch(loadingAction(false));
 				localStorage.removeItem( "token" );
 			}
-
+			
 			return error;
 		}
-	);
+		);
+		useEffect(() => {
+					 toast.promise(fetchData, {
+							pending: "درحال انجام عملیات",
+							success: "عملیات موفقیت امیز بود",
+							error: "اشکالی پیش امده",
+						});
+				 }, []);
 
 	const fetchData = async (url, options) => {
 		dispatch(loadingAction(true));

@@ -31,7 +31,7 @@ const authSlice = createSlice( {
         {
             state.is_creator = action.payload;
         },
-        setMoney: ( state, action ) =>
+        setMoneyAction: ( state, action ) =>
         {
             state.money = action.payload;
         }
@@ -40,6 +40,11 @@ const authSlice = createSlice( {
 } );
 
 
-export const { loginAction, loadingAction, logoutAction, setCreatorAction, setMoney } =
-	authSlice.actions;
+export const {
+	loginAction,
+	loadingAction,
+	logoutAction,
+	setCreatorAction,
+	setMoneyAction,
+} = authSlice.actions;
 export default authSlice.reducer;

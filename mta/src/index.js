@@ -13,7 +13,12 @@ import "react-toastify/dist/ReactToastify.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<ToastContainer rtl={true} position="top-right" theme="colored" />
+		<ToastContainer
+			rtl={true}
+			position="bottom-right"
+			theme="dark"
+			autoClose={4000}
+		/>
 		<Provider store={store}>
 			<BrowserRouter>
 				<App />
