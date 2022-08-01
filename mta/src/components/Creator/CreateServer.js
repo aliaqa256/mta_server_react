@@ -57,7 +57,6 @@ const CreateServer = (props) => {
 
     return (
 			<IsLogin>
-				<IsCreator>
 					<Spinnable>
 						<div className="container">
 							<div className="row">
@@ -99,7 +98,6 @@ const CreateServer = (props) => {
 							</div>
 						</div>
 					</Spinnable>
-				</IsCreator>
 			</IsLogin>
 		);
 };

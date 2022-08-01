@@ -46,13 +46,13 @@ const useAxios = (url, options) => {
 			return error;
 		}
 		);
-		useEffect(() => {
-					 toast.promise(fetchData, {
-							pending: "درحال انجام عملیات",
-							success: "عملیات موفقیت امیز بود",
-							error: "اشکالی پیش امده",
-						});
-				 }, []);
+		// useEffect(() => {
+		// 			 toast.promise(fetchData, {
+		// 					pending: "درحال انجام عملیات",
+		// 					success: "عملیات موفقیت امیز بود",
+		// 					error: "اشکالی پیش امده",
+		// 				});
+		// 		 }, []);
 
 	const fetchData = async (url, options) => {
 		dispatch(loadingAction(true));

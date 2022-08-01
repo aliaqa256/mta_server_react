@@ -55,7 +55,6 @@ const MakeAdmin = () => {
 	return (
 		<>
 			<IsLogin>
-				<IsCreator>
 					<Spinnable>
 						{/* --------------------------- */}
 
@@ -109,7 +108,6 @@ const MakeAdmin = () => {
 
 						{/* --------------------------- */}
 					</Spinnable>
-				</IsCreator>
 			</IsLogin>
 		</>
 	);
