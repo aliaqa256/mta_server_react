@@ -57,6 +57,7 @@ const CreateServer = (props) => {
 
     return (
 			<IsLogin>
+				<IsCreator>
 					<Spinnable>
 						<div className="container">
 							<div className="row">
@@ -92,12 +93,13 @@ const CreateServer = (props) => {
 										<li className="text-white my-1">
 											در لیست سرور های من پورت سرور شما نوشته شده است
 										</li>
-										<li  className="text-white my-1"> مثال:62.3.41.227:3002</li>
+										<li className="text-white my-1"> مثال:62.3.41.227:3002</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</Spinnable>
+				</IsCreator>
 			</IsLogin>
 		);
 };

@@ -5,7 +5,6 @@ import { logoutAction } from "../redux/authSlicer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
 import { setMoneyAction } from "../redux/authSlicer";
 const Navbar = () => {
@@ -16,7 +15,9 @@ const Navbar = () => {
 	const fetchData = useAxios();
 	const logout = () => {
 		dispatch(logoutAction());
-		localStorage.removeItem("token");
+		localStorage.removeItem( "token" );
+		localStorage.removeItem( "is_login" )
+		localStorage.removeItem('is_creator')
 		navigate("/");
 	};
 

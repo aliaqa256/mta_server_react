@@ -42,6 +42,7 @@ getListOfServers();
 
 	return (
 		<IsLogin>
+			<IsCreator>
 				<Spinnable>
 					<div classNameName="container">
 						<div classNameName="row">
@@ -108,6 +109,7 @@ getListOfServers();
 						</div>
 					</div>
 				</Spinnable>
+			</IsCreator>
 		</IsLogin>
 	);
 };

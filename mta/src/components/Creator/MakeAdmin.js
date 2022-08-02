@@ -55,6 +55,7 @@ const MakeAdmin = () => {
 	return (
 		<>
 			<IsLogin>
+				<IsCreator>
 					<Spinnable>
 						{/* --------------------------- */}
 
@@ -83,15 +84,13 @@ const MakeAdmin = () => {
 											formik={formik}
 										/>
 
-										<div >
+										<div>
 											<input
 												type="checkbox"
 												id="flexSwitchCheckDefault"
 												ref={is_fist_timeRef}
 											/>
-											<label
-												for="flexSwitchCheckDefault"
-											>
+											<label for="flexSwitchCheckDefault">
 												ایا بار اول است که به این پلیر رنک میدهید؟
 											</label>
 										</div>
@@ -108,6 +107,7 @@ const MakeAdmin = () => {
 
 						{/* --------------------------- */}
 					</Spinnable>
+				</IsCreator>
 			</IsLogin>
 		</>
 	);

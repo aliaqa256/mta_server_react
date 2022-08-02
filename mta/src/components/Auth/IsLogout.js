@@ -10,7 +10,6 @@ const IsLogout = (props) => {
 
 		if ( isAuthenticated )
 		{
-			
 			navigate("/");
 		}
 	}, []);

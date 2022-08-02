@@ -29,7 +29,9 @@ const Login = (props) => {
 			console.log(response);
             if ( response.status === 200 )
             {
-				localStorage.setItem("token", response.data.access);
+				localStorage.setItem( "token", response.data.access );
+				localStorage.setItem( 'is_login', true )
+				localStorage.setItem("is_creator", true);
 				const user = jwt_decode(response.data.access);
                 dispatch( loginAction( user ) );
                 dispatch( setCreatorAction( true ) );

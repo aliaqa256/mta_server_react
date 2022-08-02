@@ -55,7 +55,9 @@ const Login = (props) => {
 			console.log(response);
 			if (response.status === 200) {
 				console.log("200");
-				localStorage.setItem("token", response.data.data.access);
+				localStorage.setItem( "token", response.data.data.access );
+								localStorage.setItem("is_login", true);
+								localStorage.setItem("is_creator", false);
 				const user = jwt_decode(response.data.data.access);
 				dispatch( loginAction( user ) );
 				navigate("/player-profile");

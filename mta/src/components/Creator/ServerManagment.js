@@ -57,6 +57,7 @@ setIsOpen(false);
 	return (
 		<>
 			<IsLogin>
+				<IsCreator>
 					<Spinnable>
 						{/* --------------------------------------- */}
 						<AcceptModal
@@ -97,6 +98,7 @@ setIsOpen(false);
 
 						{/* ----------------------------------------------- */}
 					</Spinnable>
+				</IsCreator>
 			</IsLogin>
 		</>
 	);
