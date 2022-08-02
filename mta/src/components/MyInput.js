@@ -28,18 +28,21 @@ const MyInput = ({
 					onChange={onChange}
 					{...formik.getFieldProps({ name })}
 				/>
-				{formik.touched[id] && formik.errors[id] ? (
-					<div className="text-danger">{formik.errors[id]}</div>
-				) : null}
 
 				{gt && (
-					<div >
-						<label className="input-group-text gr-txt" for="inputGroupSelect01 ">
+					<div>
+						<label
+							className="input-group-text gr-txt"
+							for="inputGroupSelect01 "
+						>
 							{gt}
 						</label>
 					</div>
 				)}
 			</div>
+			{formik.touched[id] && formik.errors[id] ? (
+				<div className="text-danger">{formik.errors[id]}</div>
+			) : null}
 		</>
 	);
 };
